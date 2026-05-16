@@ -43,3 +43,13 @@ tunnel-url.log
 
 # OS
 Thumbs.db
+
+# Auto-generated push scripts
+/push-to-github.js
+/update-github-files.js
+/push-new-files.js
+/push-to-gitee.js
+/debug-push.js
+/sync-and-push.js
+/force-push.js
+/clean-push.js
