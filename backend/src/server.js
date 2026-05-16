@@ -91,6 +91,16 @@ process.on('SIGINT', () => gracefulShutdown('SIGINT'));
 process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
 
 async function start() {
+  // Railway 环境：检查是否需要初始化数据库
+  if (process.env.RAILWAY_ENVIRONMENT) {
+    try {
+      const initDb = require('../init-db');
+      await initDb.initDatabase();
+    } catch (e) {
+      console.log('[Init] 跳过数据库初始化:', e.message);
+    }
+  }
+
   await dbManager.init();
 
   app.listen(config.port, config.host, () => {

@@ -10,5 +10,11 @@
     "restartPolicyMaxRetries": 10,
     "healthcheckPath": "/api/health",
     "healthcheckTimeout": 30
-  }
+  },
+  "volumes": [
+    {
+      "mountPath": "/app/backend/data",
+      "filesystem": "persistent"
+    }
+  ]
 }
