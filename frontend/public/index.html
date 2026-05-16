@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  
+  <!-- PWA & SEO -->
+  <meta name="theme-color" content="#e91e63" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1a0a1f" media="(prefers-color-scheme: dark)" />
+  <meta name="description" content="Love For YJH - 阳婧欢专属爱情网站，记录我们爱情的每一个瞬间" />
+  <meta name="keywords" content="love, couple, diary, photo, memory, 爱情, 情侣, 日记" />
+  <meta name="author" content="缐廷华" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Love For YJH" />
+  <meta property="og:description" content="记录我们爱情的每一个瞬间" />
+  <meta property="og:type" content="website" />
+  
+  <!-- iOS PWA -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="我们的爱情" />
+  
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>?</text></svg>" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23e91e63' width='180' height='180' rx='40'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='100'>?</text></svg>" />
+  
+  <!-- Manifest -->
+  <link rel="manifest" href="/manifest.json" />
+  
+  <title>Forever Love Yang Jinghuan</title>
+  
+  <!-- Prevent FOUC -->
+  <style>
+    html { background: #fff0f6; }
+    @media (prefers-color-scheme: dark) {
+      html { background: #1a0a1f; }
+    }
+    html.loading { visibility: hidden; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('[SW] Registered'))
+          .catch(err => console.log('[SW] Registration failed:', err));
+      });
+    }
+    
+    // Remove loading class after app mounts
+    window.addEventListener('DOMContentLoaded', () => {
+      document.documentElement.classList.remove('loading');
+    });
+    
+    // Apply saved theme immediately
+    (function() {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+</body>
+</html>

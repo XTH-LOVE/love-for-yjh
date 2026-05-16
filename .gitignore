@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+build/
+dist/
+
+# Capacitor
+android/
+ios/
+*.xcworkspace
+*.xcodeproj
+
+# Logs
+*.log
+npm-debug.log*
+
+# Database files
+*.db
+*.sqlite
+
+# Environment
+.env
+.env.local
+
+# Temp files
+*.tmp
+*.temp
+.DS_Store
+
+# Debug files
+cf-*.log
+tunnel-url.txt
+current-tunnel-url.txt
+tunnel-url.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
